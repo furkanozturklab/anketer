@@ -1,0 +1,50 @@
+[
+    {
+        "type": "public",
+        "img": "assets/img/public.jpg",
+        "icon": "assets/img/icon/tr_public.png",
+        "title" : "Genel",
+        "sub" : "Genel kategori, diğer kategorilere doğrudan uymayan veya birden fazla kategoriye ait olan konuları içeren bir kategoridir. Bu kategori, genellikle çeşitli ilgi alanlarına sahip kullanıcılar için bir araya getirilen farklı konuları içerir.",
+        "view": "",
+        "rating": ""
+    },
+    {
+        "type": "tecno",
+        "img": "assets/img/tecno_ex.jpg",
+        "icon": "iconT",
+        "title" : "Teknoloji",
+        "sub" : "Teknoloji kategorisi, modern dünyadaki teknolojik gelişmeleri, elektronik ürünler, mobil cihazlar, bilgisayarlar, yazılımlar, internet ve diğer teknolojik alanlar hakkında bilgi sunan bir kategoridir.",
+        "view": "",
+        "rating": ""
+    } ,
+    
+    {
+        "type": "life",
+        "img": "assets/img/life_ex.jpg",
+        "icon": "iconT",
+        "title" : "Yaşam",
+        "sub" : "Yaşam kategorisi, insan hayatının farklı yönlerini ele alan bir kategoridir. Bu kategoride, sağlık, güzellik, aile, ilişkiler, ebeveynlik, seyahat, yiyecek ve içecek, moda, ev ve bahçe gibi konular ele alınır. Yaşam kategorisi, insanların günlük hayatında karşılaştıkları farklı konulara ilişkin bilgi, öneri ve ilham kaynağı sağlar.",
+        "view": "",
+        "rating": ""
+    },
+
+    {
+        "type": "product",
+        "img": "assets/img/product_ex.jpg",
+        "icon": "iconT",
+        "title" : "Ürün",
+        "sub" : "Bu kategoride, elektronik, giyim, ev eşyaları, mobilya, spor malzemeleri, kozmetik ve daha birçok farklı ürün kategorisi yer alabilir. Ürün kategorisi, kullanıcıların ürünleri karşılaştırmasına, özelliklerini incelemesine ve ürün hakkında fikir sahibi olmasına yardımcı olan bir kategoridir.",
+        "view": "",
+        "rating": ""
+    },
+    {
+        "type": "politics",
+        "img": "assets/img/judgment_ex.jpg",
+        "icon": "assets/img/icon/tr_politics.png",
+        "title" : "Siyaset",
+        "sub" : "Politika kategorisi, siyasi konuları ele alan bir kategoridir ve ulusal veya uluslararası politikalar, hükümetler, liderler ve diğer politik konular gibi birçok konuyu içerir.",
+        "view": "",
+        "rating": ""
+    }
+   
+]

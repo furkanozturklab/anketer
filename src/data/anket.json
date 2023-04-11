@@ -1,0 +1,44 @@
+[
+    {
+        "type":"public",
+        "title": "halka acık alanlar durum",
+        "desc":"yeni yapılan anket sonucu acıklandı ",
+        "totalResponse":10,
+        "time":"24s",
+        "view": 1600,
+        "status" : "continue"
+    },{
+        "type":"tecno",
+        "title": "iphone 15 ön gösterime geldi",
+        "desc":"yeni yapılan anket sonucu acıklandı ",
+        "totalResponse":10,
+        "time":"24s",
+        "view": 1600,
+        "status" : "continue"
+    },{
+        "type":"life",
+        "title": "hayat zorluğu artımı",
+        "desc":"yeni yapılan anket sonucu acıklandı ",
+        "totalResponse":10,
+        "time":"24s",
+        "view": 1600,
+        "status" : "continue"
+    },{
+        "type":"product",
+        "title": "samsun a70 ürün skorları",
+        "desc":"yeni yapılan anket sonucu acıklandı ",
+        "totalResponse":10,
+        "time":"24s",
+        "view": 1600,
+        "status" : "continue"
+    }
+    ,{
+        "type":"politics",
+        "title": "Cumhur başkanı da son durum",
+        "desc":"yeni yapılan anket sonucu acıklandı ",
+        "totalResponse":10,
+        "time":"24s",
+        "view": 1600,
+        "status" : "continue"
+    }
+]

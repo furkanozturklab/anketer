@@ -1,3 +1,155 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@layer base {
+
+    body,html,#root{
+        @apply bg-primary text-second w-full h-full antialiased overflow-hidden;
+        font-family: 'Source Sans Pro', sans-serif;
+        
+    }
+    
+
+    input {
+        @apply outline-0 focus:outline-0 hover:outline-0;
+    }
+
+    .anketer_base{
+        @apply flex flex-wrap overflow-hidden relative w-full h-full z-20 before:opacity-90 before:w-full before:h-full before:absolute before:bg-fixed before:bg-no-repeat before:bg-cover before:bg-center after:bg-primary after:w-full after:h-full after:absolute after:top-0 after:left-0 after:opacity-70 after:z-10;
+        
+    }
+
+    .content_base{
+        @apply flex flex-wrap overflow-hidden relative w-full h-full
+    }
+
+    .anketer_base .section-middle , .anketer_base .section-one ,.anketer_base .section-footer{
+        @apply z-30;
+    }
+
+    .anketer_base .section-middle .anketer-buttons{
+        @apply  bg-slate-50 text-slate-900  hover:text-slate-50 hover:bg-slate-900 transition-colors rounded-lg font-semibold px-10 py-2 text-base
+    }
+
+    
+}
+
+@layer components {
+
+    .section-middle{
+        height: calc(100vh - 4rem);
+        @apply w-full flex items-center justify-center
+    }
+
+    .section-one{
+        height: calc(100vh - 4rem);
+        @apply w-full flex items-center justify-center
+    }
+
+    .section-footer{
+        height: 4rem;
+        @apply w-full;
+    }
+
+    .popup{
+        @apply group-hover:visible absolute collapse bg-primary text-second rounded pl-2 pr-7 py-1 transition duration-700 ease-in-out;
+    }   
+
+    
+}
+
+.search-button{
+    top: 0;
+    right: 0;
+}
+
+.animation-start{
+top: -100vh;
+}
+
+
+
+#category li .content{
+    position: relative;
+}
+
+#category li .content::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    @apply bg-center bg-no-repeat bg-cover;
+}
+
+#category li .content::after{
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+#category li .content .content-img{
+    @apply h-[160px] border-2 rounded-xl relative w-full bg-center bg-no-repeat bg-cover before:rounded-xl before:bg-black before:w-full before:h-full before:top-0 before:left-0 before:absolute before:opacity-50;
+
+
+}
+div.ds {
+    height: 50px;
+    position: relative;
+    z-index: 30;
+    @apply bg-primary rounded-l-xl  z-30 flex items-center my-5;
+}
+
+div.ds .dsx{
+    width: calc(100% - 240px);
+}
+
+div.ds .dsj{
+    transition: all 1s;
+    width: 240px;
+    height: 50px;
+    @apply justify-center items-center content-center
+}
+
+div.ds::before{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    @apply rounded-l-xl bg-left bg-no-repeat bg-cover ;
+    transition: all 1s ease-in-out;
+    z-index: 1;
+}
+
+
+div.ds::after{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: '';
+    background-color: #000;
+    @apply opacity-50 rounded-l-xl;
+    z-index:2;
+}
+
+div.ds:hover::before{
+    width: calc(100% - 240px);
+}
+
+div.ds:hover .info{
+    z-index: 30;
+    transition: all 2s;
+}
