@@ -1,18 +1,20 @@
 import React, { useEffect, useState, memo } from 'react'
 import { Icon } from 'Icons/Icons'
 
-function Counter({getHours,getMinutes,getSeconds,getIsRunning}) {
+function Counter({getHours,getMinutes,getSeconds,getIsRunning,className}) {
 
     const [hours, setHours] = useState(getHours);
     const [minutes, setMinutes] = useState(getMinutes);
     const [seconds, setSeconds] = useState(getSeconds);
-    const [isRunning, setIsRunning] = useState(null);
+    const [isRunning, setIsRunning] = useState(true);
+
+   
 
     useEffect(() => {
-
+        
         let interval;
         if (isRunning) {
-
+          
             interval = setInterval(() => {
                 if (seconds > 0) {
                     setSeconds((seconds) => seconds - 1);
@@ -38,7 +40,7 @@ function Counter({getHours,getMinutes,getSeconds,getIsRunning}) {
 
 
     return (
-        <span className='flex cursor-default'><Icon name="time" />  <span className='ml-4'>{hours} Saat {minutes} dk {seconds} sn</span></span>
+       <div className={className}><span className='flex cursor-default'><Icon name="time" />  <span className='ml-4'>{hours} Saat {minutes} dk {seconds} sn</span></span></div> 
     )
 }
 

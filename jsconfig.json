@@ -4,7 +4,7 @@
   },
   "include": [
     "src"
-  ],
+, "Template/Popup.js"  ],
   "exclude": [
     "node_modules",
     "build"

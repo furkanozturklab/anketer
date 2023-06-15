@@ -1,95 +1,143 @@
-import React, { useEffect, useRef } from 'react'
-import Popup from './ui/Popup'
-import Counter from './ui/Counter'
-import Nav from './ui/Nav'
+// dependencies
+import React, { useEffect, useRef, useState } from 'react'
+import classNames from 'classnames';
+import GridLoader from "react-spinners/GridLoader";
+import { animate } from "framer-motion";
+import { Element } from 'react-scroll';
+
+// my components
+import Nav from './ui/Nav';
+import Counter from './ui/Counter';
+import CategoryItemList from './ui/CategoryItemList';
+import Vote from './ui/surveyItems/vote';
+import VoteResult from './ui/surveyItems/voteResult';
+
+// my functions
+import { loadSurver } from '../api/apimodel';
 import { Icon } from 'Icons/Icons'
-import { useDispatch } from 'react-redux'
-import { changeComponents } from 'store/ComponentData'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { animateOnLoad, animateOnExit } from 'function/Animation';
+import { timerSet, voteEffect } from '../Tools/Gears'
+import { scrollToSection } from 'Animation/Animations';
 
 
 export default function Home() {
 
-    const nowLocation = useLocation();
-    const scope = useRef();
-    const dispacht = useDispatch();
-    const navigate = useNavigate();
+    const [jsonData, setJsonData] = useState(null);
+    const [postVoteData, setPostVoteData] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [aniStatus, setAniStatus] = useState(false);
 
+    const [oldAnketer, setOldAnketer] = useState(false);
+
+
+    let timeEnd = timerSet();
+
+
+    const vote = useRef();
+    const upButton = useRef();
+    const prgBar = useRef();
+    const baseRef = useRef();
+
+
+    // UseEffect  //
+
+    //* load useEffect 
     useEffect(() => {
-
-        const animateLoad = async () => {
-
-            await animateOnLoad(scope.current, "top", 1);
-            scope.current.classList.remove("animation-start");
-            scope.current.removeAttribute("style");
+        const pageLoad = async () => {
+            console.log("true");
+            await loadSurver(setJsonData, setPostVoteData);
+            setIsLoading(false);
         }
-
-        animateLoad();
+        if (jsonData === null) pageLoad();
         return () => {
-
-
+            console.log("Destory");
         }
-    }, [])
+    }, [jsonData])
 
-    const gotoPage = async (location) => {
+    //* load first page load useEffect 
+    useEffect(() => {
+        if (isLoading) console.log("true");
+        else if (jsonData !== null && !aniStatus) {
+            setAniStatus(true);
+            animate(baseRef.current, { opacity: [0, 1], scale: [0.8, 1], filter: ['blur(2px)', 'blur(0px)'] }, { duration: 0.8, easing: 'ease-in-out', steps: 60 });
+        }
+    }, [isLoading, jsonData, aniStatus])
 
-        scope.current.classList.remove("animation-start");
-        await animateOnExit(scope.current, "bottom", 1);
-        navigate(location);
+    //* vote send useEffect
+    useEffect(() => {
+        const ani = async () => {
+            await animate(prgBar.current, { height: [0, 240], opacity: [0, 1] }, { duration: 0.4, easing: 'ease-in-out', steps: 60 });
+        }
+        if (postVoteData) ani();
+    }, [postVoteData])
 
+    // UseEffect //
+
+    // Main Load //
+
+    if (isLoading) {
+        return (
+            <div className='spinner'>
+                <GridLoader color="#c2410c" size={30} />
+            </div>
+        )
+    }
+    else if (jsonData !== null) {
+
+        return (
+
+            <section ref={baseRef} className={classNames({
+                "anketer-base overflow-y-auto ": true,
+                "before:bg-tecno tecno": jsonData[0]['anketer_type'] === "tecno",
+                "before:bg-judgment politics": jsonData[0]['anketer_type'] === "politics",
+                "before:bg-public public": jsonData[0]['anketer_type'] === "public",
+                "before:bg-product product": jsonData[0]['anketer_type'] === "product",
+                "before:bg-life life": jsonData[0]['anketer_type'] === "life",
+            })}>
+                <Element name="navSection" className=' py-2 px-9  h-16 fixed z-40 w-full'>
+                    <Nav />
+                </Element>
+                <button ref={upButton} onClick={() => scrollToSection('navSection', upButton)} className='arrow-up'><Icon name="arrowUp" /></button>
+                <section className='anketer-content'>
+                    <div className='anketer-header'>
+                        <div className="anket-question transition-all">
+                            <p>{jsonData[0]['anketer_question']}</p>
+                        </div>
+                        {postVoteData ? (
+                            <>
+                                <div ref={prgBar} className=" prg-bar " style={{ opacity: 0, height: 0 }}>
+                                    <VoteResult data={jsonData[1]} totalVote={jsonData[0]['anketer_total']} type={jsonData[0]['anketer_type']} />
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div ref={vote} className='anketer-buttons'>
+                                    {Object.keys(jsonData[1]).map((item, index) => (
+                                        item.includes("_text") && jsonData[1][item] !== null && <Vote key={index} voteEffect={voteEffect} setJsonData={setJsonData} vote={vote} setPostVoteData={setPostVoteData} vote_col={item} text={jsonData[1][item]} id={jsonData[1]["anketer_id"]} />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+                    </div>
+
+                    <div className='anketer-footer'>
+                        <div className='mb-2 w-full flex justify-center'><button onClick={() => scrollToSection('listSection', upButton,setOldAnketer)} className='opacity-80 hover:opacity-100 tracking-wide'>Önceki Anketler</button></div>
+                        <Counter className='mb-4 ml-3 block' getHours={timeEnd[0]} getMinutes={timeEnd[1]} getSeconds={timeEnd[2]} getIsRunning={true} />
+                        <span className='flex mb-4 mr-3'><Icon name="user" /><span className='ml-4'>{jsonData[0]['anketer_total']}</span> </span>
+                    </div>
+                </section>
+
+                {oldAnketer && <>
+                    <Element name="listSection" className="element list-sections">
+                        <ul className='w-full relative'>
+                            <CategoryItemList />
+                        </ul>
+                    </Element>
+                </>}
+
+
+            </section>
+        )
     }
 
-    const basePage = async (location) => {
-
-
-        if (nowLocation.pathname !== "/") {
-            await animateOnExit(scope.current, "top", 1);
-            navigate("/");
-        }
-
-    }
-
-    return (
-
-
-
-        <section ref={scope} className="before:bg-judgment anketer_base animation-start">
-            <Nav basePage={basePage} />
-            <div className='section-middle px-8 relative flex flex-wrap content-center'>
-                <div className="w-3/4 text-center text-2xl font-medium">
-                    <p>"Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum,
-                        adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere
-                        bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır."</p>
-                </div>
-                <div className='w-1/2 flex justify-center mt-6'>
-                    <button className='anketer-buttons mx-3'>Evet</button>
-                    <button className='anketer-buttons mx-3'>Hayır</button>
-                    <button className='anketer-buttons mx-3'>Belki</button>
-
-
-                </div>
-
-
-            </div>
-            <div className='section-footer relative flex justify-between items-center px-8'>
-                <div className='group w-2/6'>
-                    <Popup className="-mt-10 popup" title="Anketin bitimine kalan süre" icon="info" size={16} />
-                    <Counter getHours={1} getMinutes={0} getSeconds={10} getIsRunning={true} />
-                </div>
-
-                <div className='w-2/6 justify-center flex' onClick={() => dispacht(changeComponents("after"))} >
-                    <button onClick={() => gotoPage('more')} >More Anketer</button>
-                </div>
-
-                <div className='group w-2/6 justify-end flex'>
-                    <Popup className="-mt-10 -ml-[150px] popup" title="Toplam Kullanılan Oy" icon="info" size={16} />
-                    <span className='flex'><span className='mr-4'>25896</span> <Icon name="user" /></span>
-                </div>
-            </div>
-        </section>
-
-
-
-    )
+    // Main Load //
 }

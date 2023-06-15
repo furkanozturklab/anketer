@@ -13,18 +13,7 @@ module.exports = {
         'tecnoColos' : "#083344E6",
         'productColors': "#500724E6",
         'lifeColors': "#082f49E6",
-        
-        'org-50': '#fff9db',
-        'org-100': '#fff3b2',
-        'org-200': '#ffea7d',
-        'org-300': '#ffdf49',
-        'org-400': '#ffd419',
-        'org-500': '#ffc107',
-        'org-600': '#ffb400',
-        'org-700': '#ffa600',
-        'org-800': '#ff9900',
-        'org-900': '#ff8c00',
-
+      
       },
       backgroundImage: {
         "tecno": "url(assets/img/tecno_ex.jpg)",
@@ -45,7 +34,8 @@ module.exports = {
       lineHeight: {
         '11': '2.875rem',
         '12': '3.125rem'
-      }, content: {
+      }, 
+      content: {
         "tecno": "url(assets/img/tecno_ex.jpg)",
         "life": "url(assets/img/life_ex.jpg)",
         "product": "url(assets/img/product_ex.jpg)",
@@ -53,6 +43,25 @@ module.exports = {
         "time": "url(assets/img/time_ex.jpg)",
         "judgment": "url(assets/img/judgment_ex.jpg)",
       },
+      transitionDuration: {
+        '400': '400ms',
+      },
+      minHeight:{
+        'baseHeight' :'768px',
+        '18' : '4.5rem',
+        '72' : '18rem',
+        '128' : '48rem',
+      },
+      
+      maxHeight:{
+        'baseHeight' :'768px',
+        '18' : '4.5rem',
+        '72' : '18rem',
+        '128' : '48rem',
+      },
+      height: {
+        '18': '4.5rem',
+      }
 
 
     },

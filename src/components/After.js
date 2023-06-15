@@ -1,12 +1,12 @@
 import { Icon } from 'Icons/Icons'
 import React, { useEffect, useRef } from 'react'
-import Popup from './ui/Popup'
+import Popup from '../../Template/Popup'
 import Counter from './ui/Counter'
 import Nav from './ui/Nav'
 import { useDispatch } from 'react-redux'
 import { changeComponents } from 'store/ComponentData'
 import { useNavigate  , useLocation} from 'react-router-dom'
-import { animateOnLoad, animateOnExit } from 'function/Animation';
+import { animateOnLoad, animateOnExit } from 'Animation/Animations';
 
 export default function After() {
 

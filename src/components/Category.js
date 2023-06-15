@@ -3,7 +3,7 @@ import CategoryItemList from './ui/CategoryItemList'
 import CategoryItem from './ui/CategoryItem';
 import React, { useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { animateOnLoad, animateOnExit } from 'function/Animation';
+import { animateOnLoad, animateOnExit } from 'Animation/Animations';
 
 export default function Category() {
 

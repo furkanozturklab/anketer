@@ -3,153 +3,252 @@
 @tailwind utilities;
 
 
-
 @layer base {
-
-    body,html,#root{
-        @apply bg-primary text-second w-full h-full antialiased overflow-hidden;
+    body,
+    html,
+    #root {
+        @apply bg-primary text-second w-full h-full antialiased overflow-hidden scroll-smooth;
         font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .anketer-base {
+        @apply flex flex-wrap overflow-hidden relative w-full h-full z-20 opacity-0
+        before:opacity-90 before:w-full before:h-full before:absolute before:bg-fixed before:bg-no-repeat before:bg-cover before:bg-center before:min-h-baseHeight
+        after:w-full after:h-full after:absolute after:top-0 after:left-0 after:opacity-70 after:z-10 after:bg-primary after:min-h-baseHeight;
+        transform: scale(0.8);
+    }
+
+    .anketer-base .anketer-content{
+        @apply relative w-full flex flex-wrap content-center pt-16 z-30 h-screen justify-center transition-all;   
+    }
+
+    .anketer-base .anketer-content .anketer-header{
+
+        @apply flex flex-wrap w-full content-center items-center justify-center transition-all;
+        height: calc(100vh - 128px);
+
+    } 
+
+    .anketer-base .anketer-content .anketer-header .anket-question{
+        @apply w-3/4 text-center text-white text-lg md:text-2xl transition-all;
+    }
+
+    .anketer-base .anketer-content .anketer-header .anketer-buttons{
+        @apply w-3/4 flex justify-center mt-2 md:flex-row flex-col transition-all items-center;
+    }
+    .anketer-base .anketer-content .anketer-header .anketer-buttons button{
+        @apply bg-slate-50 text-slate-900 transition-colors rounded-lg font-semibold md:px-14 px-5 md:py-1.5 py-1 w-3/4 md:w-auto;
+    }
+
+
+    .anketer-base.politics .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-politicsColor hover:text-white;
+    }
+
+    .anketer-base.tecno .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-tecnoColos hover:text-white;
+    }
+
+    .anketer-base.public .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-publicColor hover:text-white;
+    }
+
+    .anketer-base.product .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-productColors hover:text-white;
+    }
+
+    .anketer-base.life .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-lifeColors hover:text-white;
+    }
+
+    
+    .anketer-base .anketer-content .anketer-footer{
+        @apply w-full absolute bottom-0 flex justify-between items-center content-center flex-wrap transition-all;
+        height: 64px;
+    }
+
+    .list-sections{
+        @apply flex flex-wrap content-start h-screen w-screen relative p-10 my-10 overflow-hidden;
+    }
+
+    .list-sections .list-items{
+        @apply w-full my-6 relative min-h-18 h-auto overflow-hidden max-h-18 rounded-xl hover:md:max-h-72 hover:max-h-128
+        before:w-full before:h-full before:absolute before:top-0 before:left-0 before:rounded-xl before:bg-left before:bg-no-repeat before:bg-cover before:transition-all before:delay-100 before:ease-in-out before:-z-20
+        after:w-full after:h-full after:absolute after:top-0 after:left-0 after:rounded-xl after:transition-all after:delay-100 after:ease-in-out after:bg-slate-950 after:opacity-80 after:-z-10;
+        transition: all 1s ease-in-out;   
+    }
+
+    .list-sections .list-items > span:first-child{
+        @apply w-full h-18 flex absolute top-0 left-0;
+    }
+
+    .list-sections .list-items .header{
+        @apply flex min-h-18 max-h-18 items-center px-5 w-full flex-wrap
+     }
+
+     .list-sections .list-items .header .icon{
+        @apply w-[32px] h-[32px] justify-center flex items-center;
+     }
+
+     .list-sections .list-items .header .icon > span:first-child{
+        @apply w-[32px] h-[32px] justify-center flex items-center max-w-[32px];
+     }
+
+     .list-sections .list-items .header .text{
+        @apply h-[32px] justify-center flex items-center text-left; 
+        width: calc(100% - 160px - 1.25rem);
+     }
+
+     .list-sections .list-items .header .text > span:first-child{
+        @apply w-full h-[32px] justify-center flex items-center text-left px-4; 
+     }
+
+     .list-sections .list-items .header .text .react-loading-skeleton{
+        @apply h-[20px]; 
+     }
+
+     .list-sections .list-items .header .text p{
+        @apply w-full text-ellipsis overflow-hidden px-4 block truncate;
+     }
+
+     .list-sections .list-items .header .date{
+        @apply h-[32px] justify-center flex items-center;
+        width: 128px;
+     }
+
+     .list-sections .list-items .header .date > span:first-child{
+        @apply h-[32px] justify-center flex items-center px-2;
+        width: 128px;
+     }
+
+     .list-sections .list-items .header .date .react-loading-skeleton{
+        @apply h-[20px]; 
+     }
+
+     .list-sections .list-items .detail{
+        @apply flex justify-center items-center text-sm flex-wrap
+     }
+
+     .list-sections .list-items .detail .content{
+        @apply md:w-2/4 w-full text-center text-base font-semibold px-5 py-2
+     }
+
+     .list-sections .list-items .detail .content p{
+        @apply w-full  text-ellipsis overflow-hidden
+     }
+
+     .list-sections .list-items .detail .voteList{
+        @apply w-full md:w-2/4 flex justify-center flex-wrap
+     }
+
+     .prg-bar{
+        @apply flex justify-center w-full md:w-2/3 flex-wrap relative -z-50
+     }
+
+     .arrow-up{
+        @apply fixed z-40 bottom-5 rounded-full p-2 hidden bg-slate-50 text-slate-900  hover:text-slate-50 hover:bg-slate-900 transition-colors;
+     }
+
+     .spinner{
+        @apply flex justify-center items-center align-middle w-screen h-screen
+     }
+
+
+     /* skelton css */ 
+
+     .ld-sk-anBf-icon{
+        @apply w-8 h-8 block;
+     }
+
+     .ld-sk-anBf-text{
+        @apply w-11/12 h-8 flex items-center px-5 mt-2;
+     }
+
+     .ld-sk-anBf-date{
+        @apply w-1/12 h-8 flex items-center px-1 mt-2;
+     }
+
+     .ld-sk-anBf-text > span ,.ld-sk-anBf-date > span{
+        @apply w-full
+     }
+
+
+     .react-loading-skeleton{
+        @apply w-full h-full
+     }
+}
+
+
+
+.anketer-base::-webkit-scrollbar{
+    border-radius: 8px; 
+    width: 4px;
+}
+
+.anketer-base::-webkit-scrollbar-thumb {
+    border-radius: 8px; 
+    width: 4px;
+}
+  
+.anketer-base::-webkit-scrollbar-track {
+    background-color: #ddd; 
+}
+
+.anketer-base.politics::-webkit-scrollbar{
+    @apply bg-politicsColor;
+}
+
+.anketer-base.politics::-webkit-scrollbar-thumb{
+    @apply bg-politicsColor;
+}
+
+
+.anketer-base.tecno::-webkit-scrollbar{
+    @apply bg-tecnoColos;
+}
+
+.anketer-base.tecno::-webkit-scrollbar-thumb{
+    @apply bg-tecnoColos;
+}
+
+
+.anketer-base.public::-webkit-scrollbar{
+    @apply bg-publicColor;
+}
+
+.anketer-base.public::-webkit-scrollbar-thumb{
+    @apply bg-publicColor;
+}
+
+.anketer-base.product::-webkit-scrollbar{
+    @apply bg-productColors;
+}
+
+.anketer-base.product::-webkit-scrollbar-thumb{
+    @apply bg-productColors;
+}
+
+
+.anketer-base.life::-webkit-scrollbar{
+    @apply bg-lifeColors;
+}
+
+.anketer-base.life::-webkit-scrollbar-thumb{
+    @apply bg-lifeColors;
+}
+
+@media (min-width: 768px) {
         
-    }
-    
-
-    input {
-        @apply outline-0 focus:outline-0 hover:outline-0;
+    .anket-question{
+        @apply text-yellow-300;
     }
 
-    .anketer_base{
-        @apply flex flex-wrap overflow-hidden relative w-full h-full z-20 before:opacity-90 before:w-full before:h-full before:absolute before:bg-fixed before:bg-no-repeat before:bg-cover before:bg-center after:bg-primary after:w-full after:h-full after:absolute after:top-0 after:left-0 after:opacity-70 after:z-10;
+}
+
+@media (max-height: 768px) {
         
+    .anketer-base .anketer-content{
+        min-height: 768px;
     }
 
-    .content_base{
-        @apply flex flex-wrap overflow-hidden relative w-full h-full
-    }
-
-    .anketer_base .section-middle , .anketer_base .section-one ,.anketer_base .section-footer{
-        @apply z-30;
-    }
-
-    .anketer_base .section-middle .anketer-buttons{
-        @apply  bg-slate-50 text-slate-900  hover:text-slate-50 hover:bg-slate-900 transition-colors rounded-lg font-semibold px-10 py-2 text-base
-    }
-
-    
-}
-
-@layer components {
-
-    .section-middle{
-        height: calc(100vh - 4rem);
-        @apply w-full flex items-center justify-center
-    }
-
-    .section-one{
-        height: calc(100vh - 4rem);
-        @apply w-full flex items-center justify-center
-    }
-
-    .section-footer{
-        height: 4rem;
-        @apply w-full;
-    }
-
-    .popup{
-        @apply group-hover:visible absolute collapse bg-primary text-second rounded pl-2 pr-7 py-1 transition duration-700 ease-in-out;
-    }   
-
-    
-}
-
-.search-button{
-    top: 0;
-    right: 0;
-}
-
-.animation-start{
-top: -100vh;
-}
-
-
-
-#category li .content{
-    position: relative;
-}
-
-#category li .content::before{
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    @apply bg-center bg-no-repeat bg-cover;
-}
-
-#category li .content::after{
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: -1;
-}
-
-#category li .content .content-img{
-    @apply h-[160px] border-2 rounded-xl relative w-full bg-center bg-no-repeat bg-cover before:rounded-xl before:bg-black before:w-full before:h-full before:top-0 before:left-0 before:absolute before:opacity-50;
-
-
-}
-div.ds {
-    height: 50px;
-    position: relative;
-    z-index: 30;
-    @apply bg-primary rounded-l-xl  z-30 flex items-center my-5;
-}
-
-div.ds .dsx{
-    width: calc(100% - 240px);
-}
-
-div.ds .dsj{
-    transition: all 1s;
-    width: 240px;
-    height: 50px;
-    @apply justify-center items-center content-center
-}
-
-div.ds::before{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    content: '';
-    @apply rounded-l-xl bg-left bg-no-repeat bg-cover ;
-    transition: all 1s ease-in-out;
-    z-index: 1;
-}
-
-
-div.ds::after{
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    content: '';
-    background-color: #000;
-    @apply opacity-50 rounded-l-xl;
-    z-index:2;
-}
-
-div.ds:hover::before{
-    width: calc(100% - 240px);
-}
-
-div.ds:hover .info{
-    z-index: 30;
-    transition: all 2s;
 }

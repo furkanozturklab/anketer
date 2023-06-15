@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Nav from './ui/Nav'
 import { Icon } from 'Icons/Icons'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { animateOnLoad, animateOnExit } from 'function/Animation';
+import { animateOnLoad, animateOnExit } from 'Animation/Animations';
 
 
 export default function More() {

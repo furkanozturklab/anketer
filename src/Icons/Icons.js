@@ -184,6 +184,24 @@ const SurveyIcon = ({ size }) => {
 }
 
 
+const CalendarIcon = ({ size }) => {
+	return (
+
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width={size} height={size} viewBox="0 0 24 24" >
+			<g>
+				<g data-name="Layer 93">
+					<path  fill="currentColor" d="M19 5h-1V3a1 1 0 0 0-2 0v2H8V3a1 1 0 0 0-2 0v2H5a3 3 0 0 0-3 3v1h20V8a3 3 0 0 0-3-3zM2 19a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8H2z" />
+				</g>
+			</g>
+		</svg>
+
+
+	)
+}
+
+
+
+
 
 
 
@@ -208,7 +226,8 @@ const Icon = ({ name, size = 24 }) => {
 		iconT: CategoryTIcon,
 		eye: EyeIcon,
 		vote: VotingIcon,
-		survey:SurveyIcon,
+		survey: SurveyIcon,
+		calendar: CalendarIcon,
 	}
 
 	const Component = icons[name]

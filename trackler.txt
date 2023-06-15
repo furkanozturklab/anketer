@@ -1,4 +1,0 @@
-  const [scope, animate] = useAnimate()
-  
-      await animate(scope.current, { opacity: 0.5 ,x:"-100vw" ,filter: "blur(10px)" } ,{ duration: 3 });
-      scope.current.classList.add("TEST-DS");

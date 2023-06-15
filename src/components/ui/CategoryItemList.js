@@ -1,36 +1,74 @@
-import React from 'react'
+import React, { useEffect, useRef, useState,forwardRef } from 'react'
 import { Icon } from 'Icons/Icons'
 import AnketData from "data/anket.json";
 import classNames from 'classnames';
+import AnketerBeforeSket from 'components/skeleton/anketerBeforeSket';
+import { oldLoadSurver } from 'api/apimodel';
+import { animate } from 'framer-motion';
 export default function CategoryItemList() {
+
+
+  const [oldJsonData, setOldJsonData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const skeletons = useRef();
+  const listItems = useRef();
+
+
+
+  useEffect(() => {
+    oldLoadSurver(setOldJsonData);
+  }, [])
+
+  useEffect(() => {
+    console.log("Durum Değişti");
+
+    const loadAni = async()=>{
+
+      if(!isLoading) {
+        console.log("turrrreee");
+       await animate(skeletons.current, { opacity: [0, 1] }, { duration: 5 }); 
+      }
+      else if(isLoading) {
+        await animate(skeletons.current, { opacity: [1, 0] , display: ['block', 'none'] }, { duration: 0.4 }); 
+        await animate(listItems.current, { opacity: [0, 1] }, { duration: 0.4 }); 
+      }
+
+    }
+
+    loadAni();
+  }, [oldJsonData])
+
   return (
 
     <>
-      {
-        AnketData.map((item, index) => (
-          <div className={classNames({
-            "ds w-10/12": true,
-            "before:bg-public": item.type === "public",
-            "before:bg-judgment": item.type === "politics",
-            "before:bg-tecno": item.type === "tecno",
-            "before:bg-product": item.type === "product",
-            "before:bg-life": item.type === "life",
+      <AnketerBeforeSket ref={skeletons} skeletons={8} />
+      {oldJsonData && oldJsonData.map((item, index) => (
+        <>
+          <li ref={listItems} key={index} className={classNames({
+            "list-items": true,
+            "before:bg-public": item.anketer_type === "public",
+            "before:bg-judgment": item.anketer_type === "politics",
+            "before:bg-tecno": item.anketer_type === "tecno",
+            "before:bg-product": item.anketer_type === "product",
+            "before:bg-life": item.anketer_type === "life",
           })}>
-
-            <div className='dsx z-30 flex px-6'> <Icon name="iconT" /> <span className='ml-3'>{item.title}</span></div>
-            <div className='dsj info flex z-0 justify-center text-sm'>
-
-              <span className='flex mr-3'><Icon name="vote" /> <span className='ml-2 mt-1'>{item.totalResponse}</span></span>
-              <span className='flex mr-3'><span className='mt-2'><Icon name="eye" /></span> <span className='ml-2 mt-2'>{item.view}</span></span>
-              <span className='flex mr-3'><span className='ml-2 mt-1'>Detay</span> <span className='rotate-45 ml-2'><Icon name="arrowUp" /></span> </span>
-
+            <div className='header'>
+              <div className='icon'>
+                <Icon name="iconT" />
+              </div>
+              <div className='text'>
+                <p className=""> {item.anketer_question} </p>
+              </div>
+              <div className='date'>
+                <span className='relative font-semibold'>  {new Date(item.anketer_time).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })} </span>
+              </div>
             </div>
-
-          </div>
-        ))
-      }
-
+          </li>
+        </>
+      ))}
     </>
+
 
   )
 }

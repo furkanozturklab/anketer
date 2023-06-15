@@ -1,8 +1,0 @@
-<AnimatePresence >
-
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/more' element={<After />} />
-        </Routes>
-
-      </AnimatePresence>
