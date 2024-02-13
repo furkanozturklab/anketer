@@ -1,0 +1,22 @@
+.list-section-icon{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    height: 68px;
+    width: calc(100vw - 5rem);
+}
+
+.list-section-icon span{
+    display: flex;
+    content: "";
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-section-icon span:hover{
+    cursor: pointer;
+}

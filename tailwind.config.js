@@ -22,6 +22,7 @@ module.exports = {
         "public": "url(assets/img/public.jpg)",
         "time": "url(assets/img/time_ex.jpg)",
         "judgment": "url(assets/img/judgment_ex.jpg)",
+        "sport": "url(assets/img/sport.jpg)",
 
       },
       scale: {
@@ -42,6 +43,7 @@ module.exports = {
         "public": "url(assets/img/public.jpg)",
         "time": "url(assets/img/time_ex.jpg)",
         "judgment": "url(assets/img/judgment_ex.jpg)",
+        "sport": "url(assets/img/sport.jpg)",
       },
       transitionDuration: {
         '400': '400ms',

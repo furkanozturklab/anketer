@@ -3,13 +3,11 @@ import React from 'react'
 
 export default function VoteResult({ data, totalVote, type }) {
 
-    
+
     const values = [];
     const valuesY = [];
     Object.keys(data).map((item) => {
         if (item.includes("_val")) {
-
-            console.log(data[item]);
             if (data[item] !== null) {
                 let totalY = (data[item] / totalVote) * 100;
                 totalY = parseFloat(totalY.toFixed(1));
@@ -20,8 +18,6 @@ export default function VoteResult({ data, totalVote, type }) {
                 values.push(null);
                 valuesY.push(null);
             }
-
-
         }
     });
 
@@ -43,6 +39,7 @@ export default function VoteResult({ data, totalVote, type }) {
                             "bg-politicsColor": type === "politics",
                             "bg-tecnoColos": type === "tecno",
                             "bg-publicColor": type === "public",
+                            "bg-sport": type === "sport",
                         })} style={{ width: `${valuesY.shift()}%` }} ></div>
                     </div>
                 </div>

@@ -49,6 +49,10 @@
         @apply hover:bg-tecnoColos hover:text-white;
     }
 
+    .anketer-base.sport .anketer-content .anketer-header .anketer-buttons button{
+        @apply hover:bg-lime-600 hover:text-white;
+    }
+
     .anketer-base.public .anketer-content .anketer-header .anketer-buttons button{
         @apply hover:bg-publicColor hover:text-white;
     }
@@ -211,6 +215,13 @@
     @apply bg-tecnoColos;
 }
 
+.anketer-base.sport::-webkit-scrollbar{
+    @apply bg-lime-600;
+}
+
+.anketer-base.sport::-webkit-scrollbar-thumb{
+    @apply bg-lime-600;
+}
 
 .anketer-base.public::-webkit-scrollbar{
     @apply bg-publicColor;
